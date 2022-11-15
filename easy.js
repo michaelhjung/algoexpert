@@ -62,12 +62,25 @@ function isValidSubsequence(array, sequence) {
     return seqI === sequence.length;
 }
 
-const array = [55, 1, 22, 25, 6, -1, 8, 10];
-const sequence = [1, 6, -1, 10];
-console.log(isValidSubsequence(array, sequence));
+// const array = [55, 1, 22, 25, 6, -1, 8, 10];
+// const sequence = [1, 6, -1, 10];
+// console.log(isValidSubsequence(array, sequence));
 
 
 // ---------- 3. SORTED SQUARED ARRAY ---------- //
+function sortedSquaredArray(array) {
+    // Write your code here.
+    const newArr = [];
+    array.forEach(num => {
+        newArr.push(num * num);
+    });
+    return newArr.sort((a, b) => a - b);
+}
+
+const array = [1, 2, 3, 5, 6, 8, 9];
+console.log(sortedSquaredArray(array));
+
+
 // ---------- 4. TOURNAMENT WINNER ---------- //
 // ---------- 5. NON-CONSTRUCTIBLE CHANGE ---------- //
 // ---------- 6. FIND CLOSEST VALUE IN BST ---------- //
