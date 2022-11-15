@@ -1,21 +1,36 @@
 // ---------- 1. TWO NUMBER SUM ---------- //
+// function twoNumberSum(array, targetSum) {
+//     // Write your code here.
+//     for (let i = 0; i < array.length; i ++) {
+//         const num1 = array[i];
+
+//         for (let j = i + 1; j < array.length; j++) {
+//             const num2 = array[j];
+
+//             if (num1 + num2 === targetSum) return [num1, num2];
+//         }
+//     }
+//     return [];
+// }
+
+// BETTER SOLUTION:
 function twoNumberSum(array, targetSum) {
-    // Write your code here.
-    for (let i = 0; i < array.length; i ++) {
-        const num1 = array[i];
+    const checked = new Set();
 
-        for (let j = i + 1; j < array.length; j++) {
-            const num2 = array[j];
+    for (let num of array) {
+        const neededNum = targetSum - num;
 
-            if (num1 + num2 === targetSum) return [num1, num2];
-        }
+        if (checked.has(neededNum)) return [num, neededNum];
+        checked.add(num);
     }
+
     return [];
 }
 
-const array = [3, 5, -4, 8, 11, 1, -1, 6];
-const targetSum = 10;
-console.log(twoNumberSum(array, targetSum));
+// const array = [3, 5, -4, 8, 11, 1, -1, 6];
+// const targetSum = 10;
+// console.log(twoNumberSum(array, targetSum));
+
 
 // ---------- 2. VALIDATE SUBSEQUENCE ---------- //
 // ---------- 3. SORTED SQUARED ARRAY ---------- //
