@@ -33,21 +33,33 @@ function twoNumberSum(array, targetSum) {
 
 
 // ---------- 2. VALIDATE SUBSEQUENCE ---------- //
+// function isValidSubsequence(array, sequence) {
+//     // Write your code here.
+//     if (sequence.length > array.length) return false;
+//     if ((sequence.length === array.length) && (String(array.join('')) !== String(sequence.join('')))) return false;
+
+//     let copyArr = array.slice(0);
+
+//     for (let i = 0; i < sequence.length; i++) {
+//         const currNum = sequence[i];
+//         const currNumI = copyArr.indexOf(currNum);
+//         if (currNumI === -1) return false;
+//         copyArr = copyArr.slice(currNumI + 1);
+//     }
+
+//     return true;
+// }
+
+// BETTER SOLUTION:
 function isValidSubsequence(array, sequence) {
-    // Write your code here.
-    if (sequence.length > array.length) return false;
-    if ((sequence.length === array.length) && (String(array.join('')) !== String(sequence.join('')))) return false;
+    let seqI = 0;
 
-    let copyArr = array.slice(0);
-
-    for (let i = 0; i < sequence.length; i++) {
-        const currNum = sequence[i];
-        const currNumI = copyArr.indexOf(currNum);
-        if (currNumI === -1) return false;
-        copyArr = copyArr.slice(currNumI + 1);
+    for (let i = 0; i < array.length; i++) {
+        if (seqI === sequence.length) break;
+        if (array[i] === sequence[seqI] && seqI < sequence.length) seqI++;
     }
 
-    return true;
+    return seqI === sequence.length;
 }
 
 const array = [55, 1, 22, 25, 6, -1, 8, 10];
