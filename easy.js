@@ -127,6 +127,31 @@ function tournamentWinner(competitions, results) {
 
 
 // ---------- 5. NON-CONSTRUCTIBLE CHANGE ---------- //
+function nonConstructibleChange(coins) {
+    // Write your code here.
+    if (coins.length === 1 && coins[0] === 1) return 2;
+    if (coins.length <= 1) return 1;
+
+    const checked = [];
+    const maxTotal = (arr) => arr.reduce((prev, curr) => prev + curr, 0);
+    let prevMaxTotal;
+    coins.sort((a, b) => a - b);
+
+    for (let i = 0; i < coins.length; i++) {
+        const coin = coins[i];
+        if (coin > prevMaxTotal) return prevMaxTotal;
+
+        checked.push(coin);
+        const nextMaxTotal = maxTotal(checked);
+        prevMaxTotal = nextMaxTotal + 1;
+    }
+
+    return prevMaxTotal;
+}
+// const coins = [5, 7, 1, 1, 2, 3, 22];
+// console.log(nonConstructibleChange(coins));
+
+
 // ---------- 6. FIND CLOSEST VALUE IN BST ---------- //
 // ---------- 7. BRANCH SUMS ---------- //
 // ---------- 8. NODE DEPTHS ---------- //
