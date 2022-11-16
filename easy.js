@@ -185,6 +185,34 @@ function findClosestValueInBst(tree, target) {
 
 
 // ---------- 7. BRANCH SUMS ---------- //
+function branchSums(root) {
+    // Write your code here.
+    const result = [];
+    let currNode = root;
+    let branchPath = [currNode];
+    const stack = [branchPath];
+
+    while (stack.length) {
+        const currPath = stack.pop();
+        currNode = currPath[currPath.length - 1];
+        if (!currNode.left && !currNode.right) {
+            let sum = 0;
+
+            for (let node of currPath) {
+                sum += node.value;
+            }
+
+            result.push(sum);
+        }
+
+        if (currNode.left) stack.push([ ...currPath, currNode.left ]);
+        if (currNode.right) stack.push([ ...currPath, currNode.right ]);
+    }
+
+    return result;
+}
+
+
 // ---------- 8. NODE DEPTHS ---------- //
 // ---------- 9. DEPTH-FIRST SEARCH ---------- //
 // ---------- 10. MINIUMUM WAITING TIME ---------- //
