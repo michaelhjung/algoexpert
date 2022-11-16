@@ -153,6 +153,37 @@ function nonConstructibleChange(coins) {
 
 
 // ---------- 6. FIND CLOSEST VALUE IN BST ---------- //
+// helper fn
+function dfs(tree, target, diff) {
+    if (!tree) return;
+
+    const currDiff = Math.abs(target - tree.value);
+    if (currDiff < diff.value) {
+        diff.closest = tree.value;
+        diff.value = currDiff;
+    }
+
+    if (target > tree.value) dfs(tree.right, target, diff);
+    else if (target < tree.value) dfs(tree.left, target, diff);
+    else return;
+}
+
+function findClosestValueInBst(tree, target) {
+    // Write your code here.
+    /*
+    PSEUDOCODE:
+        1. Create a variable to store the smallest absolute value difference, and actual value.
+        2. Traverse through the BST with a depth-first-search to compare differences.
+        3. Compare the target with each node and store the smallest absolute value difference, and actual value.
+        4. Return the value with the smallest absolute value difference.
+    */
+
+    const diff = { value: Infinity, closest: null };
+    dfs(tree, target, diff);
+    return diff.closest;
+}
+
+
 // ---------- 7. BRANCH SUMS ---------- //
 // ---------- 8. NODE DEPTHS ---------- //
 // ---------- 9. DEPTH-FIRST SEARCH ---------- //
