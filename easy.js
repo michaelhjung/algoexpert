@@ -185,31 +185,44 @@ function findClosestValueInBst(tree, target) {
 
 
 // ---------- 7. BRANCH SUMS ---------- //
-function branchSums(root) {
-    // Write your code here.
-    const result = [];
-    let currNode = root;
-    let branchPath = [currNode];
-    const stack = [branchPath];
+// BFS WITH INCORRECT ORDER:
+// function branchSums(root) {
+//     // Write your code here.
+//     const result = [];
+//     let currNode = root;
+//     let branchPath = [currNode];
+//     const stack = [branchPath];
 
-    while (stack.length) {
-        const currPath = stack.pop();
-        currNode = currPath[currPath.length - 1];
-        if (!currNode.left && !currNode.right) {
-            let sum = 0;
+//     while (stack.length) {
+//         const currPath = stack.pop();
+//         currNode = currPath[currPath.length - 1];
+//         if (!currNode.left && !currNode.right) {
+//             let sum = 0;
 
-            for (let node of currPath) {
-                sum += node.value;
-            }
+//             for (let node of currPath) {
+//                 sum += node.value;
+//             }
 
-            result.push(sum);
-        }
+//             result.push(sum);
+//         }
 
-        if (currNode.left) stack.push([ ...currPath, currNode.left ]);
-        if (currNode.right) stack.push([ ...currPath, currNode.right ]);
-    }
+//         if (currNode.left) stack.push([ ...currPath, currNode.left ]);
+//         if (currNode.right) stack.push([ ...currPath, currNode.right ]);
+//     }
 
-    return result;
+//     return result;
+// }
+
+// BETTER SOLUTION:
+function branchSums(root, sum = 0, sums = []) {
+    const currentSum = root.value + sum;
+
+    if (!root.left && !root.right) sums.push(currentSum);
+
+    if (root.left) branchSums(root.left, currentSum, sums);
+    if (root.right) branchSums(root.right, currentSum, sums);
+
+    return sums;
 }
 
 
