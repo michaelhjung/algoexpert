@@ -77,11 +77,55 @@ function sortedSquaredArray(array) {
     return newArr.sort((a, b) => a - b);
 }
 
-const array = [1, 2, 3, 5, 6, 8, 9];
-console.log(sortedSquaredArray(array));
+// const array = [1, 2, 3, 5, 6, 8, 9];
+// console.log(sortedSquaredArray(array));
 
 
 // ---------- 4. TOURNAMENT WINNER ---------- //
+function tournamentWinner(competitions, results) {
+    // Write your code here.
+    const totals = {};
+
+    for (let i = 0; i < results.length; i++) {
+        const home = competitions[i][0];
+        const away = competitions[i][1];
+
+        if (results[i] === 0) {
+            if (totals[away]) totals[away] += 3;
+            else totals[away] = 3;
+        }
+        if (results[i] === 1) {
+            if (totals[home]) totals[home] += 3;
+            else totals[home] = 3;
+        }
+    }
+
+    let highestScore = 0;
+    let indexOfHighestScore = 0;
+    const scores = Object.values(totals);
+    for (let j = 0; j < scores.length; j++) {
+        const score = scores[j];
+
+        if (score > highestScore) {
+            highestScore = score;
+            indexOfHighestScore = j;
+        }
+    }
+
+    const teams = Object.keys(totals);
+
+    return teams[indexOfHighestScore];
+}
+
+// const competitions = [
+//     ["HTML", "C#"],
+//     ["C#", "Python"],
+//     ["Python", "HTML"],
+// ];
+// const results = [0, 0, 1];
+// console.log(tournamentWinner(competitions, results));
+
+
 // ---------- 5. NON-CONSTRUCTIBLE CHANGE ---------- //
 // ---------- 6. FIND CLOSEST VALUE IN BST ---------- //
 // ---------- 7. BRANCH SUMS ---------- //
