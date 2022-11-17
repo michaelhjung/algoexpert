@@ -248,7 +248,21 @@ function branchSums(root) {
     return sum;
 }
 
+
 // ---------- 9. DEPTH-FIRST SEARCH ---------- //
+function depthFirstSearch(array, root=this) {
+    // Write your code here.
+    array.push(root.name);
+    if (root.children.length) {
+        root.children.forEach(child => {
+            this.depthFirstSearch(array, child);
+        });
+    }
+
+    return array;
+}
+
+
 // ---------- 10. MINIUMUM WAITING TIME ---------- //
 // ---------- 11. CLASS PHOTOS ---------- //
 // ---------- 12. TANDEM BICYCLE ---------- //
