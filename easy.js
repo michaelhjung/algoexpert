@@ -316,6 +316,33 @@ function classPhotos(redShirtHeights, blueShirtHeights) {
 
 
 // ---------- 12. TANDEM BICYCLE ---------- //
+function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
+    // Write your code here.
+    /* Pseudocode:
+        1. If fastest is true, take the fastest half of both shirts combined
+           and pair them with the complimentary shirt that's slower.
+        2. Otherwise, just sort them both normally and pair each slightly faster
+           one with a slower one.
+    */
+   let sum = 0;
+
+    if (fastest) {
+        redShirtSpeeds.sort((a, b) => b - a);
+        blueShirtSpeeds.sort((a, b) => a - b);
+    }
+    else {
+        redShirtSpeeds.sort((a, b) => a - b);
+        blueShirtSpeeds.sort((a, b) => a - b);
+    }
+
+    for (let i = 0; i < redShirtSpeeds.length; i++) {
+        redShirtSpeeds[i] > blueShirtSpeeds[i] ? sum += redShirtSpeeds[i] : sum += blueShirtSpeeds[i];
+    }
+
+    return sum;
+}
+
+
 // ---------- 13. REMOVE DUPLICATES FROM LINKED LISTS ---------- //
 // ---------- 14. NTH FIBONACCI ---------- //
 // ---------- 15. PRODUCT SUM ---------- //
