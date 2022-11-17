@@ -264,6 +264,24 @@ function depthFirstSearch(array, root=this) {
 
 
 // ---------- 10. MINIUMUM WAITING TIME ---------- //
+function minimumWaitingTime(queries) {
+    queries.sort((a, b) => a - b);
+    let finalSum = 0;
+    let prevSum = 0;
+
+    if (queries.length <= 1) return 0;
+    else if (queries.length === 2) return queries[0];
+
+    for (let i = 0; i < queries.length - 1; i++) {
+        const query = queries[i];
+        prevSum += query;
+        finalSum += prevSum;
+    }
+
+    return finalSum;
+}
+
+
 // ---------- 11. CLASS PHOTOS ---------- //
 // ---------- 12. TANDEM BICYCLE ---------- //
 // ---------- 13. REMOVE DUPLICATES FROM LINKED LISTS ---------- //
