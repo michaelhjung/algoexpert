@@ -227,6 +227,27 @@ function branchSums(root, sum = 0, sums = []) {
 
 
 // ---------- 8. NODE DEPTHS ---------- //
+function branchSums(root) {
+    // Write your code here.
+    let sum = 0;
+    let currNode = root;
+    let branchPath = [currNode];
+    const stack = [branchPath];
+
+    while (stack.length) {
+        const currPath = stack.pop();
+        const distance = currPath.length - 1;
+        sum += distance;
+
+        currNode = currPath[currPath.length - 1];
+
+        if (currNode.left) stack.push([ ...currPath, currNode.left ]);
+        if (currNode.right) stack.push([ ...currPath, currNode.right ]);
+    }
+
+    return sum;
+}
+
 // ---------- 9. DEPTH-FIRST SEARCH ---------- //
 // ---------- 10. MINIUMUM WAITING TIME ---------- //
 // ---------- 11. CLASS PHOTOS ---------- //
