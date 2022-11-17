@@ -241,8 +241,8 @@ function branchSums(root) {
 
         currNode = currPath[currPath.length - 1];
 
-        if (currNode.left) stack.push([ ...currPath, currNode.left ]);
-        if (currNode.right) stack.push([ ...currPath, currNode.right ]);
+        if (currNode.left) stack.push([...currPath, currNode.left]);
+        if (currNode.right) stack.push([...currPath, currNode.right]);
     }
 
     return sum;
@@ -250,7 +250,7 @@ function branchSums(root) {
 
 
 // ---------- 9. DEPTH-FIRST SEARCH ---------- //
-function depthFirstSearch(array, root=this) {
+function depthFirstSearch(array, root = this) {
     // Write your code here.
     array.push(root.name);
     if (root.children.length) {
@@ -283,6 +283,38 @@ function minimumWaitingTime(queries) {
 
 
 // ---------- 11. CLASS PHOTOS ---------- //
+function classPhotos(redShirtHeights, blueShirtHeights) {
+    // Write your code here.
+    /* Psuedocode:
+        1. Find max height of all students. Sort will likely help.
+        2. Student with max height needs to go in back, so all with that shirt
+           goes in back.
+        3. Check if each student in that array has a corresponding student in
+           the other array with a shorter height
+    */
+
+    redShirtHeights.sort((a, b) => a - b);
+    blueShirtHeights.sort((a, b) => a - b);
+
+    const tallestRed = redShirtHeights[redShirtHeights.length - 1];
+    const tallestBlue = blueShirtHeights[blueShirtHeights.length - 1];
+
+    if (tallestRed > tallestBlue) {
+        for (let i = 0; i < redShirtHeights.length - 1; i++) {
+            if (redShirtHeights[i] <= blueShirtHeights[i]) return false;
+        }
+    }
+    else if (tallestBlue > tallestRed) {
+        for (let i = 0; i < blueShirtHeights.length - 1; i++) {
+            if (blueShirtHeights[i] <= redShirtHeights[i]) return false;
+        }
+    }
+    else if (tallestBlue === tallestRed) return false;
+
+    return true;
+}
+
+
 // ---------- 12. TANDEM BICYCLE ---------- //
 // ---------- 13. REMOVE DUPLICATES FROM LINKED LISTS ---------- //
 // ---------- 14. NTH FIBONACCI ---------- //
