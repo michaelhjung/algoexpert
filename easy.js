@@ -369,6 +369,19 @@ function removeDuplicatesFromLinkedList(linkedList) {
 
 
 // ---------- 14. NTH FIBONACCI ---------- //
+function getNthFib(n, memo=[]) {
+    // Write your code here.
+    if (memo[n]) return memo[n];
+    let result;
+    if (n === 1) result = 0;
+    else if (n <= 3) result = 1;
+    else result = getNthFib(n - 1, memo) + getNthFib(n - 2, memo);
+
+    memo[n] = result;
+    return result;
+}
+
+
 // ---------- 15. PRODUCT SUM ---------- //
 // ---------- 16. BINARY SEARCH ---------- //
 // ---------- 17. FIND THREE LARGEST NUMBERS ---------- //
