@@ -324,7 +324,7 @@ function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
         2. Otherwise, just sort them both normally and pair each slightly faster
            one with a slower one.
     */
-   let sum = 0;
+    let sum = 0;
 
     if (fastest) {
         redShirtSpeeds.sort((a, b) => b - a);
@@ -344,6 +344,30 @@ function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
 
 
 // ---------- 13. REMOVE DUPLICATES FROM LINKED LISTS ---------- //
+function removeDuplicatesFromLinkedList(linkedList) {
+    // Write your code here.
+    if (!linkedList.next) return linkedList;
+    const seen = new Set();
+    let currNode = linkedList;
+    let prevNode = null;
+
+    while (currNode.next) {
+        if (seen.has(currNode.value)) {
+            prevNode.next = currNode.next;
+        } else {
+            prevNode = currNode;
+            seen.add(currNode.value);
+        }
+
+        currNode = currNode.next;
+    }
+
+    if (seen.has(currNode.value)) prevNode.next = null;
+
+    return linkedList;
+}
+
+
 // ---------- 14. NTH FIBONACCI ---------- //
 // ---------- 15. PRODUCT SUM ---------- //
 // ---------- 16. BINARY SEARCH ---------- //
