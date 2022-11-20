@@ -383,10 +383,19 @@ function getNthFib(n, memo = []) {
 
 
 // ---------- 15. PRODUCT SUM ---------- //
-function productSum(array) {
+function productSum(array, depth=1) {
     // Write your code here.
+    let sum = 0;
+    if (!array.length) return sum;
 
+    for (let i = 0; i < array.length; i++) {
+        if (typeof array[i] === "number") sum += array[i];
+        else sum += productSum(array[i], depth+1);
+    }
+
+    return sum * depth;
 }
+
 
 
 // ---------- 16. BINARY SEARCH ---------- //
