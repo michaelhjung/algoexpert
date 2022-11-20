@@ -383,22 +383,34 @@ function getNthFib(n, memo = []) {
 
 
 // ---------- 15. PRODUCT SUM ---------- //
-function productSum(array, depth=1) {
+function productSum(array, depth = 1) {
     // Write your code here.
     let sum = 0;
     if (!array.length) return sum;
 
     for (let i = 0; i < array.length; i++) {
         if (typeof array[i] === "number") sum += array[i];
-        else sum += productSum(array[i], depth+1);
+        else sum += productSum(array[i], depth + 1);
     }
 
     return sum * depth;
 }
 
 
-
 // ---------- 16. BINARY SEARCH ---------- //
+function binarySearch(array, target, startIdx=0) {
+    // Write your code here.
+    if (!array.length || (array.length === 1 && array[0] !== target)) return -1;
+
+    const m = Math.floor(array.length / 2);
+    if (array[m] === target) return startIdx + m;
+    else {
+        if (target > array[m]) return binarySearch(array.slice(m + 1), target, startIdx + (m + 1));
+        else return binarySearch(array.slice(0, m), target, startIdx);
+    }
+}
+
+
 // ---------- 17. FIND THREE LARGEST NUMBERS ---------- //
 // ---------- 18. BUBBLE SORT ---------- //
 // ---------- 19. INSERTION SORT ---------- //
