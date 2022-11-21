@@ -398,7 +398,7 @@ function productSum(array, depth = 1) {
 
 
 // ---------- 16. BINARY SEARCH ---------- //
-function binarySearch(array, target, startIdx=0) {
+function binarySearch(array, target, startIdx = 0) {
     // Write your code here.
     if (!array.length || (array.length === 1 && array[0] !== target)) return -1;
 
@@ -425,6 +425,19 @@ function binarySearch(array, target, startIdx=0) {
 
 
 // ---------- 17. FIND THREE LARGEST NUMBERS ---------- //
+function findThreeLargestNumbers(array) {
+    // Write your code here.
+    const first = Math.max(...array);
+    array.splice(array.indexOf(first), 1);
+    const second = Math.max(...array);
+    array.splice(array.indexOf(second), 1);
+    const third = Math.max(...array);
+    array.splice(array.indexOf(third), 1);
+
+    return [third, second, first];
+}
+
+
 // ---------- 18. BUBBLE SORT ---------- //
 // ---------- 19. INSERTION SORT ---------- //
 // ---------- 20. SELECTION SORT ---------- //
