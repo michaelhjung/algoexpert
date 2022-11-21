@@ -439,6 +439,30 @@ function findThreeLargestNumbers(array) {
 
 
 // ---------- 18. BUBBLE SORT ---------- //
+function bubbleSort(array) {
+    // Write your code here.
+    if (array.length === 1) return array;
+    let alreadySorted = 0;
+
+    for (let i = 0; i < array.length; i++) {
+        let curr = array[i];
+        let next = array[i + 1];
+
+        if (curr > next) {
+            array[i] = next;
+            array[i + 1] = curr;
+        }
+        else alreadySorted++;
+
+        if (i === array.length - 2) {
+            if (alreadySorted === array.length - 1) return array;
+            i = -1;
+            alreadySorted = 0;
+        }
+    }
+}
+
+
 // ---------- 19. INSERTION SORT ---------- //
 // ---------- 20. SELECTION SORT ---------- //
 // ---------- 21. PALINDROME CHECK ---------- //
