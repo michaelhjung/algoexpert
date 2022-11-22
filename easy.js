@@ -464,6 +464,26 @@ function bubbleSort(array) {
 
 
 // ---------- 19. INSERTION SORT ---------- //
+function insertionSort(array) {
+    // Write your code here.
+    for (let i = 1; i < array.length; i++) {
+        let pointer = i;
+        let curr = array[pointer];
+        let left = i - 1;
+
+        while (curr < array[left] && (left >= 0)) {
+            let tmp = curr;
+            array[pointer] = array[left];
+            array[left] = tmp;
+            left--;
+            pointer--;
+        }
+    }
+
+    return array;
+}
+
+
 // ---------- 20. SELECTION SORT ---------- //
 // ---------- 21. PALINDROME CHECK ---------- //
 // ---------- 22. CAESAR CIPHER ENCRYPTOR ---------- //
