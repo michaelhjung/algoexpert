@@ -485,6 +485,30 @@ function insertionSort(array) {
 
 
 // ---------- 20. SELECTION SORT ---------- //
+function selectionSort(array) {
+    // Write your code here.
+    for (let i = 0; i < array.length; i++) {
+        let min = array[i];
+        let newMinIndex;
+
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < min) {
+                min = array[j];
+                newMinIndex = j;
+            }
+        }
+
+        if (min !== array[i]) {
+            let tmp = array[i];
+            array[i] = min;
+            array[newMinIndex] = tmp;
+        }
+    }
+
+    return array;
+}
+
+
 // ---------- 21. PALINDROME CHECK ---------- //
 // ---------- 22. CAESAR CIPHER ENCRYPTOR ---------- //
 // ---------- 23. RUN-LENGTH ENCODING ---------- //
