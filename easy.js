@@ -606,8 +606,12 @@ function firstNonRepeatingCharacter(string) {
         else charCounts[string[i]]++;
     }
 
-    for (let char in charCounts) {
-        if (charCounts[char] === 1) return string.indexOf(char);
+    // for (let char in charCounts) {
+    //     if (charCounts[char] === 1) return string.indexOf(char);
+    // }
+    // OR:
+    for (let j = 0; j < string.length; j++) {
+        if (charCounts[string[j]] === 1) return j;
     }
 
     return -1;
