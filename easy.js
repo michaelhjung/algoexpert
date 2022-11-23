@@ -510,6 +510,26 @@ function selectionSort(array) {
 
 
 // ---------- 21. PALINDROME CHECK ---------- //
+// function isPalindrome(string) {
+//     // Write your code here.
+//     let reverseString = string.slice(0).split('').reverse().join('');
+
+//     if (reverseString === string) return true;
+//     else return false;
+// }
+// WITHOUT BUILT IN METHODS:
+function isPalindrome(string) {
+    // Write your code here.
+    let pointer = string.length - 1;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] !== string[pointer]) return false;
+        else pointer--;
+    }
+
+    return true;
+}
+
+
 // ---------- 22. CAESAR CIPHER ENCRYPTOR ---------- //
 // ---------- 23. RUN-LENGTH ENCODING ---------- //
 // ---------- 24. GENERATE DOCUMENT ---------- //
