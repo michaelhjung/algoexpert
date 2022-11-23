@@ -531,6 +531,20 @@ function isPalindrome(string) {
 
 
 // ---------- 22. CAESAR CIPHER ENCRYPTOR ---------- //
+function caesarCipherEncryptor(string, key) {
+    // Write your code here.
+    const alphas = "abcdefghijklmnopqrstuvwxyz";
+    let translated = "";
+
+    for (let i = 0; i < string.length; i++) {
+        const alphaIndex = (alphas.indexOf(string[i]) + key) % 26;
+        translated += alphas[alphaIndex];
+    }
+
+    return translated;
+}
+
+
 // ---------- 23. RUN-LENGTH ENCODING ---------- //
 // ---------- 24. GENERATE DOCUMENT ---------- //
 // ---------- 25. FIRST NON-REPEATING CHARACTER ---------- //
