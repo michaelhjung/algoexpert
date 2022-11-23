@@ -597,3 +597,18 @@ function generateDocument(characters, document) {
 
 
 // ---------- 25. FIRST NON-REPEATING CHARACTER ---------- //
+function firstNonRepeatingCharacter(string) {
+    // Write your code here.
+    let charCounts = {};
+
+    for (let i = 0; i < string.length; i++) {
+        if (!charCounts[string[i]]) charCounts[string[i]] = 1;
+        else charCounts[string[i]]++;
+    }
+
+    for (let char in charCounts) {
+        if (charCounts[char] === 1) return string.indexOf(char);
+    }
+
+    return -1;
+}
