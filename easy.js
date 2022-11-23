@@ -546,5 +546,29 @@ function caesarCipherEncryptor(string, key) {
 
 
 // ---------- 23. RUN-LENGTH ENCODING ---------- //
+function runLengthEncoding(string) {
+    // Write your code here.
+    let translation = "";
+    let currLetter = string[0];
+    let count = 0;
+
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === currLetter && count < 9) {
+            count++;
+        } else {
+            translation += `${count.toString()}${currLetter}`;
+            currLetter = string[i];
+            count = 1;
+        }
+
+        if (i === string.length - 1) {
+            translation += `${count.toString()}${currLetter}`;
+        }
+    }
+
+    return translation;
+}
+
+
 // ---------- 24. GENERATE DOCUMENT ---------- //
 // ---------- 25. FIRST NON-REPEATING CHARACTER ---------- //
