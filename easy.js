@@ -571,4 +571,29 @@ function runLengthEncoding(string) {
 
 
 // ---------- 24. GENERATE DOCUMENT ---------- //
+function generateDocument(characters, document) {
+    // Write your code here.
+    if (!document) return true;
+
+    const charGiven = {};
+    const charNeeded = {};
+
+    characters.split('').forEach(char => {
+        if (!charGiven[char]) charGiven[char] = 1;
+        else charGiven[char]++;
+    });
+
+    document.split('').forEach(char => {
+        if (!charNeeded[char]) charNeeded[char] = 1;
+        else charNeeded[char]++;
+    });
+
+    for (let char in charNeeded) {
+        if (charGiven[char] < charNeeded[char] || !charGiven[char]) return false;
+    }
+
+    return true;
+}
+
+
 // ---------- 25. FIRST NON-REPEATING CHARACTER ---------- //
