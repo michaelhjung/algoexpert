@@ -1,6 +1,6 @@
 // ---------- 1. THREE NUMBER SUM ---------- //
 // ---------- 2. SMALLEST DIFFERENCE ---------- //
-// //BRUTE FORCE METHOD:
+// // BRUTE FORCE METHOD:
 // function smallestDifference(arrayOne, arrayTwo) {
 //     const smallestDistance = {
 //         v1: arrayOne[0],
@@ -63,8 +63,27 @@ function moveElementToEnd(array, toMove) {
 // ---------- 20. MAX SUBSET SUM NO ADJACENT ---------- //
 // ---------- 21. NUMBER OF WAYS TO MAKE CHANGE ---------- //
 // ---------- 22. MIN NUMBER OF COINS FOR CHANGE ---------- //
+// BRUTE FORCE METHOD:
 function minNumberOfCoinsForChange(n, denoms) {
-    // Write your code here.
+    if (n === 0) return 0;
+    const queue = [];
+    denoms.forEach(d => queue.push(n));
+    let count = 0;
+    while (queue.length) {
+        let currLength = queue.length;
+        ++count;
+        for (let i = 0; i < currLength; i++) {
+            const num = queue.shift();
+            for (let j = 0; j < denoms.length; j++) {
+                if (num - denoms[j] > 0) queue.push(num - denoms[j]);
+                else if (num - denoms[j] === 0) return count;
+            }
+        }
+    }
+    return -1;
+}
+function minNumberOfCoinsForChange(n, denoms) {
+
 }
 // ---------- 23. LEVENSHTEIN DISTANCE ---------- //
 // ---------- 24. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
