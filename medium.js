@@ -1,48 +1,58 @@
 // ---------- 1. THREE NUMBER SUM ---------- //
+// BRUTE FORCE METHOD:
+function threeNumberSum(array, targetSum) {
+    // Write your code here.
+    array.sort((a, b) => a - b);
+    const queue = [];
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            for (let k = j + 1; k < array.length; k++) {
+                if (array[i] + array[j] + array[k] === targetSum) {
+                    queue.push([array[i], array[j], array[k]]);
+                }
+            }
+        }
+    }
+    return queue;
+}
 // ---------- 2. SMALLEST DIFFERENCE ---------- //
-// // BRUTE FORCE METHOD:
-// function smallestDifference(arrayOne, arrayTwo) {
-//     const smallestDistance = {
-//         v1: arrayOne[0],
-//         v2: arrayTwo[0],
-//         distance: Math.abs(arrayOne[0] - arrayTwo[0])
-//     }
-
-//     for (let i = 0; i < arrayOne.length; i++) {
-//         for (let j = 0; j < arrayTwo.length; j++) {
-//             if (Math.abs(arrayOne[i] - arrayTwo[j]) < smallestDistance.distance) {
-//                 smallestDistance.v1 = arrayOne[i];
-//                 smallestDistance.v2 = arrayTwo[j];
-//                 smallestDistance.distance = Math.abs(arrayOne[i] - arrayTwo[j]);
-//             }
-//         }
-//     }
-
-//     return [smallestDistance.v1, smallestDistance.v2];
-// }
+// BRUTE FORCE METHOD:
 function smallestDifference(arrayOne, arrayTwo) {
+    const smallestDistance = {
+        v1: arrayOne[0],
+        v2: arrayTwo[0],
+        distance: Math.abs(arrayOne[0] - arrayTwo[0])
+    }
 
+    for (let i = 0; i < arrayOne.length; i++) {
+        for (let j = 0; j < arrayTwo.length; j++) {
+            if (Math.abs(arrayOne[i] - arrayTwo[j]) < smallestDistance.distance) {
+                smallestDistance.v1 = arrayOne[i];
+                smallestDistance.v2 = arrayTwo[j];
+                smallestDistance.distance = Math.abs(arrayOne[i] - arrayTwo[j]);
+            }
+        }
+    }
+
+    return [smallestDistance.v1, smallestDistance.v2];
 }
 // ---------- 3. MOVE ELEMENT TO END ---------- //
-// // BRUTE FORCE METHOD:
-// function moveElementToEnd(array, toMove) {
-//     array.sort();
-//     let startSpliceI;
-//     let numToSplice = 1;
-//     for (let i = 0; i < array.length; i++) {
-//         if ((startSpliceI || startSpliceI === 0) && array[i] === toMove) numToSplice++;
-//         else if ((!startSpliceI && startSpliceI !== 0) && array[i] === toMove) startSpliceI = i;
-//         else if ((startSpliceI || startSpliceI === 0) && array[i] !== toMove) {
-//             const spliced = array.splice(startSpliceI, numToSplice);
-//             array.push(...spliced);
-//             break;
-//         }
-//     }
-
-//     return array;
-// }
+// BRUTE FORCE METHOD:
 function moveElementToEnd(array, toMove) {
+    array.sort();
+    let startSpliceI;
+    let numToSplice = 1;
+    for (let i = 0; i < array.length; i++) {
+        if ((startSpliceI || startSpliceI === 0) && array[i] === toMove) numToSplice++;
+        else if ((!startSpliceI && startSpliceI !== 0) && array[i] === toMove) startSpliceI = i;
+        else if ((startSpliceI || startSpliceI === 0) && array[i] !== toMove) {
+            const spliced = array.splice(startSpliceI, numToSplice);
+            array.push(...spliced);
+            break;
+        }
+    }
 
+    return array;
 }
 // ---------- 4. MONOTONIC ARRAY ---------- //
 // ---------- 5. SPIRAL TRAVERSE ---------- //
@@ -81,9 +91,6 @@ function minNumberOfCoinsForChange(n, denoms) {
         }
     }
     return -1;
-}
-function minNumberOfCoinsForChange(n, denoms) {
-
 }
 // ---------- 23. LEVENSHTEIN DISTANCE ---------- //
 // ---------- 24. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
