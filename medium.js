@@ -55,6 +55,19 @@ function moveElementToEnd(array, toMove) {
     return array;
 }
 // ---------- 4. MONOTONIC ARRAY ---------- //
+function isMonotonic(array) {
+    // Write your code here.
+    let increaseCount = 0;
+    let decreaseCount = 0;
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > array[i - 1]) increaseCount++;
+        else if (array[i] < array[i - 1]) decreaseCount++;
+    }
+
+    if (increaseCount === 0 || decreaseCount === 0) return true;
+    else return false;
+}
 // ---------- 5. SPIRAL TRAVERSE ---------- //
 // ---------- 6. LONGEST PEAK ---------- //
 // ---------- 7. ARRAY OF PRODUCTS ---------- //
