@@ -69,6 +69,50 @@ function isMonotonic(array) {
     else return false;
 }
 // ---------- 5. SPIRAL TRAVERSE ---------- //
+function spiralTraverse(array) {
+    // Write your code here.
+    const result = [];
+
+    let top = 0;
+    let bottom = array.length - 1;
+    let left = 0;
+    let right = array[0].length - 1;
+
+    while (top <= bottom && left <= right) {
+        // push all top row
+        for (let col = left; col <= right; col++) {
+            result.push(array[top][col]);
+        }
+        if (top === bottom) break;
+
+        // push all right column
+        for (let row = top + 1; row <= bottom; row++) {
+            result.push(array[row][right]);
+        }
+        if (left === right) break;
+
+        // push all bottom row
+        for (let col = right - 1; col >= left; col--) {
+            if (right > left) {
+                result.push(array[bottom][col]);
+            }
+        }
+
+        // push all left column
+        for (let row = bottom - 1; row > top; row--) {
+            if (bottom > top) {
+                result.push(array[row][left]);
+            }
+        }
+
+        top++;
+        bottom--;
+        left++;
+        right--;
+    }
+
+    return result;
+}
 // ---------- 6. LONGEST PEAK ---------- //
 // ---------- 7. ARRAY OF PRODUCTS ---------- //
 // ---------- 8. FIRST DUPLICATE VALUE ---------- //
