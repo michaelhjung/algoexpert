@@ -141,7 +141,6 @@ function longestPeak(array) {
             }
 
             const potPeak = [...leftValley, left, curr, right, ...rightValley];
-            console.log(potPeak);
             if (potPeak.length > longest.length) longest = [...potPeak];
         }
     }
