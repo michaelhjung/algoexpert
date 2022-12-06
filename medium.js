@@ -110,6 +110,44 @@ function spiralTraverse(array) {
     return result;
 }
 // ---------- 6. LONGEST PEAK ---------- //
+// BRUTE FORCE METHOD:
+function longestPeak(array) {
+    // Write your code here.
+    let longest = [];
+    for (let i = 1; i < array.length - 1; i++) {
+        let left = array[i - 1];
+        let curr = array[i];
+        let right = array[i + 1];
+
+        if (curr > left && curr > right) {
+            let leftValley = [];
+            let leftTmp = array[i - 1];
+            for (let j = i - 2; j >= 0; j--) {
+                if (array[j] >= leftTmp) break;
+                else {
+                    leftValley.push(array[j]);
+                    leftTmp = array[j];
+                }
+            }
+
+            let rightValley = [];
+            let rightTmp = array[i + 1];
+            for (let k = i + 2; k < array.length; k++) {
+                if (array[k] >= rightTmp) break;
+                else {
+                    rightValley.push(array[k]);
+                    rightTmp = array[k];
+                }
+            }
+
+            const potPeak = [...leftValley, left, curr, right, ...rightValley];
+            console.log(potPeak);
+            if (potPeak.length > longest.length) longest = [...potPeak];
+        }
+    }
+
+    return longest.length;
+}
 // ---------- 7. ARRAY OF PRODUCTS ---------- //
 // ---------- 8. FIRST DUPLICATE VALUE ---------- //
 // ---------- 9. MERGE OVERLAPPING INTERVALS ---------- //
