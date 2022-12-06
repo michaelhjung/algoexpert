@@ -93,16 +93,12 @@ function spiralTraverse(array) {
 
         // push all bottom row
         for (let col = right - 1; col >= left; col--) {
-            if (right > left) {
-                result.push(array[bottom][col]);
-            }
+            result.push(array[bottom][col]);
         }
 
         // push all left column
         for (let row = bottom - 1; row > top; row--) {
-            if (bottom > top) {
-                result.push(array[row][left]);
-            }
+            result.push(array[row][left]);
         }
 
         top++;
