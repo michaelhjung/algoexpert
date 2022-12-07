@@ -197,6 +197,65 @@ function minNumberOfCoinsForChange(n, denoms) {
 // ---------- 26. SINGLE CYCLE CHECK ---------- //
 // ---------- 27. BREADTH-FIRST SEARCH ---------- //
 // ---------- 28. RIVER SIZES ---------- //
+// helper:
+const findNeighbors = (matrix, node) => {
+    const [row, col] = node;
+    const neighbors = [];
+
+    // up
+    if (row > 0 && matrix[row - 1][col] === 1) neighbors.push([row - 1, col]);
+    // down
+    if (row < matrix.length - 1 && matrix[row + 1][col] === 1) neighbors.push([row + 1, col]);
+    // left
+    if (col > 0 && matrix[row][col - 1] === 1) neighbors.push([row, col - 1]);
+    // right
+    if (col < matrix[0].length - 1 && matrix[row][col + 1] === 1) neighbors.push([row, col + 1]);
+
+    return neighbors;
+}
+function riverSizes(matrix) {
+    // Write your code here.
+    const counts = [];
+    const seen = new Set();
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            let startNode = [i, j];
+            if (!seen.has(startNode.toString()) && matrix[i][j] === 1) {
+                seen.add(startNode.toString());
+                const stack = [[startNode]];
+                let count = 0;
+                while (stack.length) {
+                    const currPath = stack.pop();
+                    count++;
+                    const lastNode = currPath[currPath.length - 1];
+                    const neighbors = findNeighbors(matrix, lastNode);
+                    neighbors.forEach(neighbor => {
+                        const copyPath = currPath.slice(0);
+                        if (!seen.has(neighbor.toString())) {
+                            copyPath.push(neighbor);
+                            stack.push(copyPath);
+                            seen.add(neighbor.toString());
+                        }
+                    });
+                }
+                counts.push(count);
+            }
+        }
+    }
+    return counts;
+}
+const matrix = [
+    // [1, 0, 0, 1, 0],
+    // [1, 0, 1, 0, 0],
+    // [0, 0, 1, 0, 1],
+    // [1, 0, 1, 0, 1],
+    // [1, 0, 1, 1, 0]
+    [1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0],
+    [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0],
+    [0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1],
+    [1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0],
+    [1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1]
+];
 // ---------- 29. YOUNGEST COMMON ANCESTOR ---------- //
 // ---------- 30. REMOVE ISLANDS ---------- //
 // ---------- 31. CYCLE IN GRAPH ---------- //
