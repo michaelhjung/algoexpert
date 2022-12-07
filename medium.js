@@ -216,6 +216,22 @@ function minNumberOfCoinsForChange(n, denoms) {
 // ---------- 45. MIN MAX STACK CONSTRUCTION ---------- //
 // ---------- 46. BALANCED BRACKETS ---------- //
 // ---------- 47. SUNSET VIEWS ---------- //
+function sunsetViews(buildings, direction) {
+    // Write your code here.
+    if (!buildings.length) return [];
+    const result = direction === "EAST" ? [] : [0];
+
+    for (let i = direction === "EAST" ? 0 : 1; direction === "EAST" ? i < buildings.length - 1 : i < buildings.length; i++) {
+        let curr = buildings[i];
+        let max;
+        if (direction === "EAST") max = Math.max(...buildings.slice(i + 1));
+        else max = Math.max(...buildings.slice(0, i));
+        if (max < curr) result.push(i);
+    }
+    direction === "EAST" ? result.push(buildings.length - 1) : null;
+
+    return result;
+}
 // ---------- 48. SORT STACK ---------- //
 // ---------- 49. NEXT GREATER ELEMENT ---------- //
 // ---------- 50. LONGEST PALINDROMIC SUBSTRING ---------- //
