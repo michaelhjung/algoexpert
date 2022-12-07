@@ -148,6 +148,15 @@ function longestPeak(array) {
     return longest.length;
 }
 // ---------- 7. ARRAY OF PRODUCTS ---------- //
+function arrayOfProducts(array) {
+    // Write your code here.
+    const result = [];
+    for (let i = 0; i < array.length; i++) {
+        const prod = array.reduce((acc, curr, index) => index !== i ? acc * curr : acc, 1);
+        result.push(prod);
+    }
+    return result;
+}
 // ---------- 8. FIRST DUPLICATE VALUE ---------- //
 // ---------- 9. MERGE OVERLAPPING INTERVALS ---------- //
 // ---------- 10. BST CONSTRUCTION ---------- //
