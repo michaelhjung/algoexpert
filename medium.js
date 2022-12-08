@@ -273,6 +273,25 @@ function validStartingCity(distances, fuel, mpg) {
 // ---------- 38. SUM OF LINKED LISTS ---------- //
 // ---------- 39. PERMUTATIONS ---------- //
 // ---------- 40. POWERSET ---------- //
+function powerset(array) {
+    // Write your code here.
+    const result = [];
+    const stack = [array];
+    const seen = new Set();
+
+    while (stack.length) {
+        const curr = stack.pop();
+        seen.add(curr.toString());
+        result.push(curr);
+        for (let i = 0; i < curr.length; i++) {
+            const copyCurr = curr.slice(0);
+            copyCurr.splice(i, 1);
+            if (!seen.has(copyCurr.toString())) stack.push(copyCurr);
+        }
+    }
+
+    return result;
+}
 // ---------- 41. PHONE NUMBER MNEMONICS ---------- //
 // ---------- 42. STAIRCASE TRAVERSAL ---------- //
 // ---------- 43. SEARCH IN SORTED MATRIX ---------- //
