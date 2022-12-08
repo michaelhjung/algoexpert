@@ -271,6 +271,34 @@ function validStartingCity(distances, fuel, mpg) {
 // ---------- 36. LINKED LIST CONSTRUCTION ---------- //
 // ---------- 37. REMOVE KTH NODE FROM END ---------- //
 // ---------- 38. SUM OF LINKED LISTS ---------- //
+function sumOfLinkedLists(linkedListOne, linkedListTwo) {
+    // Write your code here.
+    let dig1 = [];
+    let dig2 = [];
+
+    let node1 = linkedListOne;
+    let node2 = linkedListTwo;
+    while (node1) {
+        dig1.push(node1.value);
+        node1 = node1.next;
+    }
+    while (node2) {
+        dig2.push(node2.value);
+        node2 = node2.next;
+    }
+
+    const sumNum = Number(dig1.reverse().join('')) + Number(dig2.reverse().join(''));
+    const sumStr = sumNum.toString();
+
+    const head = new LinkedList(Number(sumStr[sumStr.length - 1]));
+    let curr = head;
+    for (let i = sumStr.length - 2; i >= 0; i--) {
+        curr.next = new LinkedList(Number(sumStr[i]));
+        curr = curr.next;
+    }
+
+    return head;
+}
 // ---------- 39. PERMUTATIONS ---------- //
 // ---------- 40. POWERSET ---------- //
 function powerset(array) {
