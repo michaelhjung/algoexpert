@@ -244,24 +244,29 @@ function riverSizes(matrix) {
     }
     return counts;
 }
-const matrix = [
-    // [1, 0, 0, 1, 0],
-    // [1, 0, 1, 0, 0],
-    // [0, 0, 1, 0, 1],
-    // [1, 0, 1, 0, 1],
-    // [1, 0, 1, 1, 0]
-    [1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0],
-    [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0],
-    [0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1],
-    [1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0],
-    [1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1]
-];
 // ---------- 29. YOUNGEST COMMON ANCESTOR ---------- //
 // ---------- 30. REMOVE ISLANDS ---------- //
 // ---------- 31. CYCLE IN GRAPH ---------- //
 // ---------- 32. MINIMUM PASSES OF MATRIX ---------- //
 // ---------- 33. TASK ASSIGNMENT ---------- //
 // ---------- 34. VALID STARTING CITY ---------- //
+function validStartingCity(distances, fuel, mpg) {
+    // Write your code here.
+    for (let i = 0; i < fuel.length; i++) {
+        fuel[i] *= mpg;
+    }
+
+    for (i = 0; i < distances.length; i++) {
+        let distanceLeft = fuel[i];
+        const map = i > 0 ? [...distances.slice(i), ...distances.slice(0, i)] : [...distances];
+        for (let j = 0; j < map.length; j++) {
+            if (j !== 0) distanceLeft += fuel[(i + j) % distances.length];
+            distanceLeft -= distances[(i + j) % distances.length];
+            if (distanceLeft < 0) break;
+        }
+        if (distanceLeft >= 0) return i;
+    }
+}
 // ---------- 35. MIN HEAP CONSTRUCTION ---------- //
 // ---------- 36. LINKED LIST CONSTRUCTION ---------- //
 // ---------- 37. REMOVE KTH NODE FROM END ---------- //
