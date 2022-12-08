@@ -158,6 +158,16 @@ function arrayOfProducts(array) {
     return result;
 }
 // ---------- 8. FIRST DUPLICATE VALUE ---------- //
+function firstDuplicateValue(array) {
+    // Write your code here.
+    const seen = new Set();
+    for (let el of array) {
+        if (seen.has(el)) return el;
+        seen.add(el);
+    }
+
+    return -1;
+}
 // ---------- 9. MERGE OVERLAPPING INTERVALS ---------- //
 // ---------- 10. BST CONSTRUCTION ---------- //
 // ---------- 11. VALIDATE BST ---------- //
