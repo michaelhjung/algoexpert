@@ -169,6 +169,24 @@ function firstDuplicateValue(array) {
     return -1;
 }
 // ---------- 9. MERGE OVERLAPPING INTERVALS ---------- //
+function mergeOverlappingIntervals(array) {
+    // Write your code here.
+    array.sort((a, b) => a[0] - b[0]);
+
+    for (let i = 0; i < array.length; i++) {
+        const currSubArr = array[i];
+        let nextSubArr = array[i + 1];
+
+        while (nextSubArr && nextSubArr[0] <= currSubArr[1]) {
+            currSubArr[0] = Math.min(nextSubArr[0], currSubArr[0]);
+            currSubArr[1] = Math.max(nextSubArr[1], currSubArr[1]);
+            array.splice(i + 1, 1);
+            nextSubArr = array[i + 1];
+        }
+    }
+
+    return array;
+}
 // ---------- 10. BST CONSTRUCTION ---------- //
 // ---------- 11. VALIDATE BST ---------- //
 // ---------- 12. BST TRAVERSAL ---------- //
