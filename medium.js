@@ -402,8 +402,6 @@ function validIPAddresses(string) {
             for (let k = j + 1; k < j + Math.min(string.length - j, 4); k++) {
                 currentIPParts[2] = string.slice(j, k);
                 currentIPParts[3] = string.slice(k);
-                console.log(isValidPart(currentIPParts[2]))
-                console.log(isValidPart(currentIPParts[3]))
                 if (isValidPart(currentIPParts[2]) && isValidPart(currentIPParts[3])) {
                     result.push(currentIPParts.join('.'));
                 }
