@@ -376,6 +376,43 @@ function sunsetViews(buildings, direction) {
 // ---------- 50. LONGEST PALINDROMIC SUBSTRING ---------- //
 // ---------- 51. GROUP ANAGRAMS ---------- //
 // ---------- 52. VALID IP ADDRESSES ---------- //
+const isValidPart = (string) => {
+    if (string.length > 3 || string.length < 1) return false;
+    if (string.length >= 2 && string[0] === "0") return false;
+    if (Number(string) > 255) return false;
+
+    return true;
+}
+
+function validIPAddresses(string) {
+    // Write your code here.
+    if (string.length < 4 || string.length > 12) return [];
+    if (string.length === 4) return [`${string[0]}.${string[1]}.${string[2]}.${string[3]}`];
+    const result = [];
+
+    for (let i = 1; i < 4; i++) {
+        let currentIPParts = ['', '', '', ''];
+        currentIPParts[0] = string.slice(0, i);
+        if (!isValidPart(currentIPParts[0])) continue;
+
+        for (let j = i + 1; j < i + Math.min(string.length - i, 4); j++) {
+            currentIPParts[1] = string.slice(i, j);
+            if (!isValidPart(currentIPParts[1])) continue;
+
+            for (let k = j + 1; k < j + Math.min(string.length - j, 4); k++) {
+                currentIPParts[2] = string.slice(j, k);
+                currentIPParts[3] = string.slice(k);
+                console.log(isValidPart(currentIPParts[2]))
+                console.log(isValidPart(currentIPParts[3]))
+                if (isValidPart(currentIPParts[2]) && isValidPart(currentIPParts[3])) {
+                    result.push(currentIPParts.join('.'));
+                }
+            }
+        }
+    }
+
+    return result;
+}
 // ---------- 53. REVERSE WORDS IN STRING ---------- //
 // ---------- 54. MINIMUM CHARACTERS FOR WORDS ---------- //
 // ---------- 55. SUFFIX TRIE CONSTRUCTION ---------- //
