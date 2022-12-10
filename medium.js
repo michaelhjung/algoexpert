@@ -443,4 +443,29 @@ function reverseWordsInString(string) {
     return newSentence.join('');
 }
 // ---------- 54. MINIMUM CHARACTERS FOR WORDS ---------- //
+function minimumCharactersForWords(words) {
+    // Write your code here.
+    const allNeededChar = {};
+    for (let word of words) {
+        const wordCharCount = {};
+        for (let letter of word) {
+            if (wordCharCount[letter]) wordCharCount[letter]++;
+            else wordCharCount[letter] = 1;
+        }
+        const wordCharCountArr = Object.entries(wordCharCount);
+        wordCharCountArr.forEach(entry => {
+            if (allNeededChar[entry[0]] && entry[1] > allNeededChar[entry[0]]) allNeededChar[entry[0]] = entry[1];
+            else if (!allNeededChar[entry[0]]) allNeededChar[entry[0]] = entry[1];
+        });
+    }
+
+    const result = [];
+    Object.entries(allNeededChar).forEach(entry => {
+        for (let i = 0; i < entry[1]; i++) {
+            result.push(entry[0]);
+        }
+    });
+
+    return result;
+}
 // ---------- 55. SUFFIX TRIE CONSTRUCTION ---------- //
