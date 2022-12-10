@@ -412,5 +412,25 @@ function validIPAddresses(string) {
     return result;
 }
 // ---------- 53. REVERSE WORDS IN STRING ---------- //
+function reverseWordsInString(string) {
+    // Write your code here.
+    const newSentence = [];
+    let start = 0;
+    for (let i = 0; i <= string.length; i++) {
+        if (i === string.length) {
+            const word = string.slice(start, i);
+            newSentence.unshift(word);
+            return newSentence.join('');
+        }
+        if (string[i] === " ") {
+            const word = string.slice(start, i);
+            newSentence.unshift(word);
+            start = i + 1;
+            newSentence.unshift(" ");
+        }
+    }
+
+    return newSentence.join('');
+}
 // ---------- 54. MINIMUM CHARACTERS FOR WORDS ---------- //
 // ---------- 55. SUFFIX TRIE CONSTRUCTION ---------- //
