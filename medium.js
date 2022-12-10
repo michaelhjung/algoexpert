@@ -375,6 +375,16 @@ function sunsetViews(buildings, direction) {
 // ---------- 49. NEXT GREATER ELEMENT ---------- //
 // ---------- 50. LONGEST PALINDROMIC SUBSTRING ---------- //
 // ---------- 51. GROUP ANAGRAMS ---------- //
+function groupAnagrams(words) {
+    // Write your code here.
+    const allAnagrams = {};
+    for (let word of words) {
+        let sortedWord = word.split('').sort().join('');
+        if (allAnagrams[sortedWord]) allAnagrams[sortedWord].push(word);
+        else allAnagrams[sortedWord] = [word];
+    }
+    return Object.values(allAnagrams);
+}
 // ---------- 52. VALID IP ADDRESSES ---------- //
 const isValidPart = (string) => {
     if (string.length > 3 || string.length < 1) return false;
