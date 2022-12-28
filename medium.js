@@ -188,25 +188,36 @@ function mergeOverlappingIntervals(array) {
     return array;
 }
 // ---------- 10. ZERO SUM SUBARRAY ---------- //
-function zeroSumSubarray(nums) {
-    // Write your code here.
-    const hashmap = {};
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] === 0) return true;
-        let hasZero = false;
-        Object.keys(hashmap).forEach(key => {
-            hashmap[key] += nums[i];
-            if (hashmap[key] === 0) hasZero = true;
-        });
-        if (hasZero) return true;
+// function zeroSumSubarray(nums) {
+//     // Write your code here.
+//     const hashmap = {};
+//     for (let i = 0; i < nums.length; i++) {
+//         if (nums[i] === 0) return true;
+//         let hasZero = false;
+//         Object.keys(hashmap).forEach(key => {
+//             hashmap[key] += nums[i];
+//             if (hashmap[key] === 0) hasZero = true;
+//         });
+//         if (hasZero) return true;
 
-        hashmap[i] = nums[i];
+//         hashmap[i] = nums[i];
+//     }
+//     if (hashmap[nums.length - 1] === 0) return true;
+//     return false;
+// }
+// FASTER SOLUTION:
+function zeroSumSubarray(nums) {
+    let sum = 0;
+    const set = new Set();
+    for (let num of nums) {
+        sum += num;
+        if (num === 0 || sum === 0 || set.has(sum)) return true;
+        set.add(sum);
     }
-    if (hashmap[nums.length - 1] === 0) return true;
     return false;
 }
-const nums = [1, 2, -2, 3];
-console.log(zeroSumSubarray(nums));
+
+
 // ---------- 11. BST CONSTRUCTION ---------- //
 // ---------- 12. VALIDATE BST ---------- //
 // ---------- 13. BST TRAVERSAL ---------- //
