@@ -616,3 +616,17 @@ function firstNonRepeatingCharacter(string) {
 
     return -1;
 }
+
+
+// ---------- 26. SEMORDNILAP ---------- //
+function semordnilap(words) {
+    // Write your code here.
+    const set = new Set();
+    const res = [];
+    for (let word of words) {
+        const reverse = word.split('').reverse().join('');
+        if (set.has(reverse)) res.push([word, reverse]);
+        set.add(word);
+    }
+    return res;
+}

@@ -274,6 +274,41 @@ function riverSizes(matrix) {
 }
 // ---------- 29. YOUNGEST COMMON ANCESTOR ---------- //
 // ---------- 30. REMOVE ISLANDS ---------- //
+const findNonBorderNeighbors = (matrix, node) => {
+    const [row, col] = node;
+    const neighbors = [];
+
+    if (row > 1 && matrix[row - 1][col] === 1) neighbors.push([row - 1, col]);
+    if (row < matrix.length - 2 && matrix[row + 1][col] === 1) neighbors.push([row + 1, col]);
+    if (col > 1 && matrix[row][col - 1] === 1) neighbors.push([row, col - 1]);
+    if (col < matrix[0].length - 2 && matrix[row][col + 1] === 1) neighbors.push([row, col + 1]);
+
+    return neighbors;
+}
+function removeIslands(matrix) {
+    // Write your code here.
+    const seen = new Set();
+
+    for (let i = 1; i < matrix.length - 1; i++) {
+        for (let j = 1; j < matrix[i].length - 1; j++) {
+            const stack = [];
+            const node = [i, j];
+            if (matrix[i][j] === 1 && !seen.has(node.toString())) stack.push(node);
+            seen.add(node.toString());
+
+            while (stack.length) {
+                const currNode = stack.pop();
+                const neighbors = findNonBorderNeighbors(matrix, currNode);
+                if (!neighbors.length) matrix[currNode[0]][currNode[1]] = 0;
+                neighbors.forEach(n => {
+                    if (!seen.has(n.toString())) stack.push(n);
+                });
+            }
+        }
+    }
+
+    return matrix;
+}
 // ---------- 31. CYCLE IN GRAPH ---------- //
 // ---------- 32. MINIMUM PASSES OF MATRIX ---------- //
 // ---------- 33. TASK ASSIGNMENT ---------- //
