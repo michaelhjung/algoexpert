@@ -187,19 +187,41 @@ function mergeOverlappingIntervals(array) {
 
     return array;
 }
-// ---------- 10. BST CONSTRUCTION ---------- //
-// ---------- 11. VALIDATE BST ---------- //
-// ---------- 12. BST TRAVERSAL ---------- //
-// ---------- 13. MIN HEIGHT BST ---------- //
-// ---------- 14. FIND KTH LARGEST VALUE IN BST ---------- //
-// ---------- 15. RECONSTRUCT BST ---------- //
-// ---------- 16. INVERT BINARY TREE ---------- //
-// ---------- 17. BINARY TREE DIAMETER ---------- //
-// ---------- 18. FIND SUCCESSOR ---------- //
-// ---------- 19. HEIGHT BALANCED BINARY TREE ---------- //
-// ---------- 20. MAX SUBSET SUM NO ADJACENT ---------- //
-// ---------- 21. NUMBER OF WAYS TO MAKE CHANGE ---------- //
-// ---------- 22. MIN NUMBER OF COINS FOR CHANGE ---------- //
+// ---------- 10. ZERO SUM SUBARRAY ---------- //
+function zeroSumSubarray(nums) {
+    // Write your code here.
+    const hashmap = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === 0) return true;
+        let hasZero = false;
+        Object.keys(hashmap).forEach(key => {
+            hashmap[key] += nums[i];
+            if (hashmap[key] === 0) hasZero = true;
+        });
+        if (hasZero) return true;
+
+        hashmap[i] = nums[i];
+    }
+    if (hashmap[nums.length - 1] === 0) return true;
+    return false;
+}
+const nums = [1, 2, -2, 3];
+console.log(zeroSumSubarray(nums));
+// ---------- 11. BST CONSTRUCTION ---------- //
+// ---------- 12. VALIDATE BST ---------- //
+// ---------- 13. BST TRAVERSAL ---------- //
+// ---------- 14. MIN HEIGHT BST ---------- //
+// ---------- 15. FIND KTH LARGEST VALUE IN BST ---------- //
+// ---------- 16. RECONSTRUCT BST ---------- //
+// ---------- 17. INVERT BINARY TREE ---------- //
+// ---------- 18. BINARY TREE DIAMETER ---------- //
+// ---------- 19. FIND SUCCESSOR ---------- //
+// ---------- 20. HEIGHT BALANCED BINARY TREE ---------- //
+// ---------- 21. MERGE BINARY TREES ---------- //
+// ---------- 22. SYMMETRICAL TREE ---------- //
+// ---------- 23. MAX SUBSET SUM NO ADJACENT ---------- //
+// ---------- 24. NUMBER OF WAYS TO MAKE CHANGE ---------- //
+// ---------- 25. MIN NUMBER OF COINS FOR CHANGE ---------- //
 // BRUTE FORCE METHOD:
 function minNumberOfCoinsForChange(n, denoms) {
     if (n === 0) return 0;
@@ -219,12 +241,14 @@ function minNumberOfCoinsForChange(n, denoms) {
     }
     return -1;
 }
-// ---------- 23. LEVENSHTEIN DISTANCE ---------- //
-// ---------- 24. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
-// ---------- 25. KADANE'S ALGORITHM ---------- //
-// ---------- 26. SINGLE CYCLE CHECK ---------- //
-// ---------- 27. BREADTH-FIRST SEARCH ---------- //
-// ---------- 28. RIVER SIZES ---------- //
+// ---------- 26. LEVENSHTEIN DISTANCE ---------- //
+// ---------- 27. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
+// ---------- 28. KADANE'S ALGORITHM ---------- //
+// ---------- 29. STABLE INTERNSHIPS ---------- //
+// ---------- 30. UNION FIND ---------- //
+// ---------- 31. SINGLE CYCLE CHECK ---------- //
+// ---------- 32. BREADTH-FIRST SEARCH ---------- //
+// ---------- 33. RIVER SIZES ---------- //
 // helper:
 const findNeighbors = (matrix, node) => {
     const [row, col] = node;
@@ -272,8 +296,8 @@ function riverSizes(matrix) {
     }
     return counts;
 }
-// ---------- 29. YOUNGEST COMMON ANCESTOR ---------- //
-// ---------- 30. REMOVE ISLANDS ---------- //
+// ---------- 34. YOUNGEST COMMON ANCESTOR ---------- //
+// ---------- 35. REMOVE ISLANDS ---------- //
 const findNonBorderNeighbors = (matrix, node) => {
     const [row, col] = node;
     const neighbors = [];
@@ -309,10 +333,11 @@ function removeIslands(matrix) {
 
     return matrix;
 }
-// ---------- 31. CYCLE IN GRAPH ---------- //
-// ---------- 32. MINIMUM PASSES OF MATRIX ---------- //
-// ---------- 33. TASK ASSIGNMENT ---------- //
-// ---------- 34. VALID STARTING CITY ---------- //
+// ---------- 36. CYCLE IN GRAPH ---------- //
+// ---------- 37. MINIMUM PASSES OF MATRIX ---------- //
+// ---------- 38. TWO COLORABLE ---------- //
+// ---------- 39. TASK ASSIGNMENT ---------- //
+// ---------- 40. VALID STARTING CITY ---------- //
 function validStartingCity(distances, fuel, mpg) {
     // Write your code here.
     for (let i = 0; i < fuel.length; i++) {
@@ -330,10 +355,10 @@ function validStartingCity(distances, fuel, mpg) {
         if (distanceLeft >= 0) return i;
     }
 }
-// ---------- 35. MIN HEAP CONSTRUCTION ---------- //
-// ---------- 36. LINKED LIST CONSTRUCTION ---------- //
-// ---------- 37. REMOVE KTH NODE FROM END ---------- //
-// ---------- 38. SUM OF LINKED LISTS ---------- //
+// ---------- 41. MIN HEAP CONSTRUCTION ---------- //
+// ---------- 42. LINKED LIST CONSTRUCTION ---------- //
+// ---------- 43. REMOVE KTH NODE FROM END ---------- //
+// ---------- 44. SUM OF LINKED LISTS ---------- //
 function sumOfLinkedLists(linkedListOne, linkedListTwo) {
     // Write your code here.
     let dig1 = [];
@@ -362,8 +387,9 @@ function sumOfLinkedLists(linkedListOne, linkedListTwo) {
 
     return head;
 }
-// ---------- 39. PERMUTATIONS ---------- //
-// ---------- 40. POWERSET ---------- //
+// ---------- 45. MERGING LINKED LISTS ---------- //
+// ---------- 46. PERMUTATIONS ---------- //
+// ---------- 47. POWERSET ---------- //
 function powerset(array) {
     // Write your code here.
     const result = [];
@@ -383,13 +409,13 @@ function powerset(array) {
 
     return result;
 }
-// ---------- 41. PHONE NUMBER MNEMONICS ---------- //
-// ---------- 42. STAIRCASE TRAVERSAL ---------- //
-// ---------- 43. SEARCH IN SORTED MATRIX ---------- //
-// ---------- 44. THREE NUMBER SORT ---------- //
-// ---------- 45. MIN MAX STACK CONSTRUCTION ---------- //
-// ---------- 46. BALANCED BRACKETS ---------- //
-// ---------- 47. SUNSET VIEWS ---------- //
+// ---------- 48. PHONE NUMBER MNEMONICS ---------- //
+// ---------- 49. STAIRCASE TRAVERSAL ---------- //
+// ---------- 50. SEARCH IN SORTED MATRIX ---------- //
+// ---------- 51. THREE NUMBER SORT ---------- //
+// ---------- 52. MIN MAX STACK CONSTRUCTION ---------- //
+// ---------- 53. BALANCED BRACKETS ---------- //
+// ---------- 54. SUNSET VIEWS ---------- //
 function sunsetViews(buildings, direction) {
     // Write your code here.
     if (!buildings.length) return [];
@@ -406,10 +432,10 @@ function sunsetViews(buildings, direction) {
 
     return result;
 }
-// ---------- 48. SORT STACK ---------- //
-// ---------- 49. NEXT GREATER ELEMENT ---------- //
-// ---------- 50. LONGEST PALINDROMIC SUBSTRING ---------- //
-// ---------- 51. GROUP ANAGRAMS ---------- //
+// ---------- 55. SORT STACK ---------- //
+// ---------- 56. NEXT GREATER ELEMENT ---------- //
+// ---------- 57. LONGEST PALINDROMIC SUBSTRING ---------- //
+// ---------- 58. GROUP ANAGRAMS ---------- //
 function groupAnagrams(words) {
     // Write your code here.
     const allAnagrams = {};
@@ -420,7 +446,7 @@ function groupAnagrams(words) {
     }
     return Object.values(allAnagrams);
 }
-// ---------- 52. VALID IP ADDRESSES ---------- //
+// ---------- 59. VALID IP ADDRESSES ---------- //
 const isValidPart = (string) => {
     if (string.length > 3 || string.length < 1) return false;
     if (string.length >= 2 && string[0] === "0") return false;
@@ -456,7 +482,7 @@ function validIPAddresses(string) {
 
     return result;
 }
-// ---------- 53. REVERSE WORDS IN STRING ---------- //
+// ---------- 60. REVERSE WORDS IN STRING ---------- //
 function reverseWordsInString(string) {
     // Write your code here.
     const newSentence = [];
@@ -477,7 +503,7 @@ function reverseWordsInString(string) {
 
     return newSentence.join('');
 }
-// ---------- 54. MINIMUM CHARACTERS FOR WORDS ---------- //
+// ---------- 61. MINIMUM CHARACTERS FOR WORDS ---------- //
 function minimumCharactersForWords(words) {
     // Write your code here.
     const allNeededChar = {};
@@ -503,4 +529,5 @@ function minimumCharactersForWords(words) {
 
     return result;
 }
-// ---------- 55. SUFFIX TRIE CONSTRUCTION ---------- //
+// ---------- 62. ONE EDIT ---------- //
+// ---------- 63. SUFFIX TRIE CONSTRUCTION ---------- //
