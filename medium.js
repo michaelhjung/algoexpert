@@ -216,10 +216,14 @@ function zeroSumSubarray(nums) {
     }
     return false;
 }
-
-
 // ---------- 11. BST CONSTRUCTION ---------- //
 // ---------- 12. VALIDATE BST ---------- //
+function validateBst(root, min = -Infinity, max = Infinity) {
+    // Write your code here.
+    if (!root) return true;
+    if (root.value < min || root.value >= max) return false;
+    return validateBst(root.left, min, root.value) && validateBst(root.right, root.value, max);
+}
 // ---------- 13. BST TRAVERSAL ---------- //
 // ---------- 14. MIN HEIGHT BST ---------- //
 // ---------- 15. FIND KTH LARGEST VALUE IN BST ---------- //
