@@ -265,16 +265,20 @@ function minHeightBst(array) {
 // ---------- 15. FIND KTH LARGEST VALUE IN BST ---------- //
 function findKthLargestValueInBst(tree, k) {
     // Write your code here.
-    const reverseInOrder = (tree, arr=[]) => {
-        if (!tree) return null;
-        reverseInOrder(tree.right, arr);
-        arr.push(tree.value);
-        reverseInOrder(tree.left, arr);
-        return arr;
-    }
-    const reverseInOrderValues = reverseInOrder(tree);
+    let visited = { count: 0, value: null };
 
-    return reverseInOrderValues[k - 1];
+    const reverseInOrder = (tree, k, visited) => {
+        if (!tree || visited.count >= k) return null;
+        reverseInOrder(tree.right, k, visited);
+        if (visited.count < k) {
+          visited.count++;
+          visited.value = tree.value;
+          reverseInOrder(tree.left, k, visited);
+        }
+    }
+    reverseInOrder(tree, k, visited);
+
+    return visited.value;
 }
 // ---------- 16. RECONSTRUCT BST ---------- //
 // ---------- 17. INVERT BINARY TREE ---------- //
