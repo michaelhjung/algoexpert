@@ -252,6 +252,16 @@ function postOrderTraverse(tree, array) {
     return array;
 }
 // ---------- 14. MIN HEIGHT BST ---------- //
+function minHeightBst(array) {
+    // Write your code here.
+    if (!array.length) return null;
+    const mid = Math.floor(array.length / 2);
+    const head = new BST(array[mid]);
+    head.left = (minHeightBst(array.slice(0, mid)));
+    head.right = (minHeightBst(array.slice(mid + 1)));
+
+    return head;
+}
 // ---------- 15. FIND KTH LARGEST VALUE IN BST ---------- //
 // ---------- 16. RECONSTRUCT BST ---------- //
 // ---------- 17. INVERT BINARY TREE ---------- //
