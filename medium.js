@@ -225,6 +225,32 @@ function validateBst(root, min = -Infinity, max = Infinity) {
     return validateBst(root.left, min, root.value) && validateBst(root.right, root.value, max);
 }
 // ---------- 13. BST TRAVERSAL ---------- //
+function inOrderTraverse(tree, array) {
+    // Write your code here.
+    if (!tree) return;
+    inOrderTraverse(tree.left, array);
+    array.push(tree.value);
+    inOrderTraverse(tree.right, array);
+    return array;
+}
+
+function preOrderTraverse(tree, array) {
+    // Write your code here.
+    if (!tree) return;
+    array.push(tree.value);
+    preOrderTraverse(tree.left, array);
+    preOrderTraverse(tree.right, array);
+    return array;
+}
+
+function postOrderTraverse(tree, array) {
+    // Write your code here.
+    if (!tree) return;
+    postOrderTraverse(tree.left, array);
+    postOrderTraverse(tree.right, array);
+    array.push(tree.value);
+    return array;
+}
 // ---------- 14. MIN HEIGHT BST ---------- //
 // ---------- 15. FIND KTH LARGEST VALUE IN BST ---------- //
 // ---------- 16. RECONSTRUCT BST ---------- //
