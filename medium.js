@@ -271,9 +271,9 @@ function findKthLargestValueInBst(tree, k) {
         if (!tree || visited.count >= k) return null;
         reverseInOrder(tree.right, k, visited);
         if (visited.count < k) {
-          visited.count++;
-          visited.value = tree.value;
-          reverseInOrder(tree.left, k, visited);
+            visited.count++;
+            visited.value = tree.value;
+            reverseInOrder(tree.left, k, visited);
         }
     }
     reverseInOrder(tree, k, visited);
@@ -289,6 +289,17 @@ function findKthLargestValueInBst(tree, k) {
 // ---------- 22. SYMMETRICAL TREE ---------- //
 // ---------- 23. MAX SUBSET SUM NO ADJACENT ---------- //
 // ---------- 24. NUMBER OF WAYS TO MAKE CHANGE ---------- //
+function numberOfWaysToMakeChange(n, denoms) {
+    // Write your code here.
+    const ways = new Array(n + 1).fill(0);
+    ways[0] = 1;
+    for (let denom of denoms) {
+        for (let i = 1; i < ways.length; i++) {
+            if (i >= denom) ways[i] += ways[i - denom];
+        }
+    }
+    return ways[n];
+}
 // ---------- 25. MIN NUMBER OF COINS FOR CHANGE ---------- //
 // BRUTE FORCE METHOD:
 function minNumberOfCoinsForChange(n, denoms) {
