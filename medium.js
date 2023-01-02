@@ -340,7 +340,7 @@ function numberOfWaysToTraverseGraph(width, height, memo={}) {
     if (width === 0 || height === 0) return 0;
     if (width === 1 || height === 1) return 1;
 
-    memo[key] = numberOfWaysToTraverseGraph(width - 1, height) + numberOfWaysToTraverseGraph(width, height - 1);
+    memo[key] = numberOfWaysToTraverseGraph(width - 1, height, memo) + numberOfWaysToTraverseGraph(width, height - 1, memo);
     return memo[key];
 }
 // ---------- 28. KADANE'S ALGORITHM ---------- //
