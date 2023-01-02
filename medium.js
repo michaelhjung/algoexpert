@@ -350,7 +350,7 @@ function numberOfWaysToTraverseGraph(width, height, memo = {}) {
 function hasSingleCycle(array) {
     // Write your code here.
     const seen = new Set();
-    for (let i = 0; i < array.length; i+=0) {
+    for (let i = 0; i < array.length; i += 0) {
         if (seen.has(i) || seen.size === array.length) {
             if (i !== 0) return false;
             break;
@@ -363,6 +363,31 @@ function hasSingleCycle(array) {
     return seen.size === array.length;
 }
 // ---------- 32. BREADTH-FIRST SEARCH ---------- //
+class Node {
+    constructor(name) {
+        this.name = name;
+        this.children = [];
+    }
+
+    addChild(name) {
+        this.children.push(new Node(name));
+        return this;
+    }
+
+    breadthFirstSearch(array) {
+        // Write your code here.
+        const queue = [this];
+        while (queue.length) {
+            const qLen = queue.length;
+            for (let i = 0; i < qLen; i++) {
+                const node = queue.shift();
+                array.push(node.name);
+                queue.push(...node.children);
+            }
+        }
+        return array;
+    }
+}
 // ---------- 33. RIVER SIZES ---------- //
 // helper:
 const findNeighbors = (matrix, node) => {
