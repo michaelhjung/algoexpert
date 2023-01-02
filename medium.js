@@ -333,7 +333,7 @@ function minNumberOfCoinsForChange(n, denoms) {
 }
 // ---------- 26. LEVENSHTEIN DISTANCE ---------- //
 // ---------- 27. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
-function numberOfWaysToTraverseGraph(width, height, memo={}) {
+function numberOfWaysToTraverseGraph(width, height, memo = {}) {
     // Write your code here.
     const key = `${width},${height}`;
     if (key in memo) return memo[key];
@@ -347,6 +347,21 @@ function numberOfWaysToTraverseGraph(width, height, memo={}) {
 // ---------- 29. STABLE INTERNSHIPS ---------- //
 // ---------- 30. UNION FIND ---------- //
 // ---------- 31. SINGLE CYCLE CHECK ---------- //
+function hasSingleCycle(array) {
+    // Write your code here.
+    const seen = new Set();
+    for (let i = 0; i < array.length; i+=0) {
+        if (seen.has(i) || seen.size === array.length) {
+            if (i !== 0) return false;
+            break;
+        }
+        seen.add(i);
+        const nextI = (i + array[i]) % array.length;
+        i = nextI >= 0 ? nextI : array.length + nextI;
+    }
+
+    return seen.size === array.length;
+}
 // ---------- 32. BREADTH-FIRST SEARCH ---------- //
 // ---------- 33. RIVER SIZES ---------- //
 // helper:
