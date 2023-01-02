@@ -302,23 +302,34 @@ function numberOfWaysToMakeChange(n, denoms) {
 }
 // ---------- 25. MIN NUMBER OF COINS FOR CHANGE ---------- //
 // BRUTE FORCE METHOD:
+// function minNumberOfCoinsForChange(n, denoms) {
+//     if (n === 0) return 0;
+//     const queue = [];
+//     denoms.forEach(d => queue.push(n));
+//     let count = 0;
+//     while (queue.length) {
+//         let currLength = queue.length;
+//         ++count;
+//         for (let i = 0; i < currLength; i++) {
+//             const num = queue.shift();
+//             for (let j = 0; j < denoms.length; j++) {
+//                 if (num - denoms[j] > 0) queue.push(num - denoms[j]);
+//                 else if (num - denoms[j] === 0) return count;
+//             }
+//         }
+//     }
+//     return -1;
+// }
 function minNumberOfCoinsForChange(n, denoms) {
-    if (n === 0) return 0;
-    const queue = [];
-    denoms.forEach(d => queue.push(n));
-    let count = 0;
-    while (queue.length) {
-        let currLength = queue.length;
-        ++count;
-        for (let i = 0; i < currLength; i++) {
-            const num = queue.shift();
-            for (let j = 0; j < denoms.length; j++) {
-                if (num - denoms[j] > 0) queue.push(num - denoms[j]);
-                else if (num - denoms[j] === 0) return count;
-            }
+    // Write your code here.
+    const table = new Array(n + 1).fill(Infinity);
+    table[0] = 0;
+    for (let coin of denoms) {
+        for (let amt = 1; amt < table.length; amt++) {
+            if (coin <= amt) table[amt] = Math.min(table[amt], table[amt - coin] + 1);
         }
     }
-    return -1;
+    return table[n] === Infinity ? -1 : table[n];
 }
 // ---------- 26. LEVENSHTEIN DISTANCE ---------- //
 // ---------- 27. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
