@@ -333,6 +333,16 @@ function minNumberOfCoinsForChange(n, denoms) {
 }
 // ---------- 26. LEVENSHTEIN DISTANCE ---------- //
 // ---------- 27. NUMBER OF WAYS TO TRAVERSE GRAPH ---------- //
+function numberOfWaysToTraverseGraph(width, height, memo={}) {
+    // Write your code here.
+    const key = `${width},${height}`;
+    if (key in memo) return memo[key];
+    if (width === 0 || height === 0) return 0;
+    if (width === 1 || height === 1) return 1;
+
+    memo[key] = numberOfWaysToTraverseGraph(width - 1, height) + numberOfWaysToTraverseGraph(width, height - 1);
+    return memo[key];
+}
 // ---------- 28. KADANE'S ALGORITHM ---------- //
 // ---------- 29. STABLE INTERNSHIPS ---------- //
 // ---------- 30. UNION FIND ---------- //
