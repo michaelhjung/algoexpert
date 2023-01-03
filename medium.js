@@ -438,41 +438,6 @@ function riverSizes(matrix) {
 }
 // ---------- 34. YOUNGEST COMMON ANCESTOR ---------- //
 // ---------- 35. REMOVE ISLANDS ---------- //
-const findNonBorderNeighbors = (matrix, node) => {
-    const [row, col] = node;
-    const neighbors = [];
-
-    if (row > 1 && matrix[row - 1][col] === 1) neighbors.push([row - 1, col]);
-    if (row < matrix.length - 2 && matrix[row + 1][col] === 1) neighbors.push([row + 1, col]);
-    if (col > 1 && matrix[row][col - 1] === 1) neighbors.push([row, col - 1]);
-    if (col < matrix[0].length - 2 && matrix[row][col + 1] === 1) neighbors.push([row, col + 1]);
-
-    return neighbors;
-}
-function removeIslands(matrix) {
-    // Write your code here.
-    const seen = new Set();
-
-    for (let i = 1; i < matrix.length - 1; i++) {
-        for (let j = 1; j < matrix[i].length - 1; j++) {
-            const stack = [];
-            const node = [i, j];
-            if (matrix[i][j] === 1 && !seen.has(node.toString())) stack.push(node);
-            seen.add(node.toString());
-
-            while (stack.length) {
-                const currNode = stack.pop();
-                const neighbors = findNonBorderNeighbors(matrix, currNode);
-                if (!neighbors.length) matrix[currNode[0]][currNode[1]] = 0;
-                neighbors.forEach(n => {
-                    if (!seen.has(n.toString())) stack.push(n);
-                });
-            }
-        }
-    }
-
-    return matrix;
-}
 // ---------- 36. CYCLE IN GRAPH ---------- //
 // ---------- 37. MINIMUM PASSES OF MATRIX ---------- //
 // ---------- 38. TWO COLORABLE ---------- //
@@ -553,6 +518,65 @@ function powerset(array) {
 // ---------- 49. STAIRCASE TRAVERSAL ---------- //
 // ---------- 50. SEARCH IN SORTED MATRIX ---------- //
 // ---------- 51. THREE NUMBER SORT ---------- //
+function threeNumberSort(array, order) {
+    // Write your code here.
+    // WITHOUT ACCOUNTING FOR SPACE COMPLEXITY:
+    // const first = [];
+    // const middle = [];
+    // const last = [];
+    // for (let num of array) {
+    //     if (num === order[0]) first.push(num);
+    //     else if (num === order[1]) middle.push(num);
+    //     else if (num === order[2]) last.push(num);
+    // }
+    // array = [...first, ...middle, ...last];
+    // return array;
+
+
+    // SPACE COMPLEXITY O(1):
+    // let pointer = 0;
+    // for (let i = 0; i < array.length; i++) {
+    //     if (array[i] === order[0]) {
+    //         // swap;
+    //         let tmp = array[pointer];
+    //         array[pointer] = order[0];
+    //         array[i] = tmp;
+    //         pointer++;
+    //     }
+    // }
+    // pointer = array.length - 1;
+    // for (let i = array.length - 1; i >= 0; i--) {
+    //     if (array[i] === order[2]) {
+    //         // swap;
+    //         let tmp = array[pointer];
+    //         array[pointer] = order[2];
+    //         array[i] = tmp;
+    //         pointer--;
+    //     }
+    // }
+    // return array;
+
+
+    // MORE OPTIMIZED:
+    let first = 0, second = 0, third = array.length - 1;
+    while (second <= third) {
+        if (array[second] === order[0]) {
+            let tmp = array[first];
+            array[first] = array[second];
+            array[second] = tmp;
+            first++;
+            second++;
+        } else if (array[second] === order[2]) {
+            let tmp = array[third];
+            array[third] = array[second];
+            array[second] = tmp;
+            third--;
+        } else {
+            second++;
+        }
+    }
+    return array;
+}
 // ---------- 52. MIN MAX STACK CONSTRUCTION ---------- //
 // ---------- 53. BALANCED BRACKETS ---------- //
 // ---------- 54. SUNSET VIEWS ---------- //
