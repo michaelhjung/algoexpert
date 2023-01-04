@@ -453,10 +453,10 @@ function removeIslands(matrix) {
                         seen.add(node.toString());
                         matrix[r][c] = 2;
 
-                        if (r + 1 <= matrix.length - 1 && !seen.has([r+1, c].toString()) && matrix[r+1][c] === 1) stack.push([r+1, c]);
-                        if (r - 1 >= 0 && !seen.has([r-1, c].toString()) && matrix[r-1][c] === 1) stack.push([r-1, c]);
-                        if (c + 1 <= matrix[r].length - 1 && !seen.has([r, c+1].toString()) && matrix[r][c+1] === 1) stack.push([r, c+1]);
-                        if (c - 1 >= 0 && !seen.has([r, c-1].toString()) && matrix[r][c-1] === 1) stack.push([r, c-1]);
+                        if (r + 1 <= matrix.length - 1 && !seen.has([r + 1, c].toString()) && matrix[r + 1][c] === 1) stack.push([r + 1, c]);
+                        if (r - 1 >= 0 && !seen.has([r - 1, c].toString()) && matrix[r - 1][c] === 1) stack.push([r - 1, c]);
+                        if (c + 1 <= matrix[r].length - 1 && !seen.has([r, c + 1].toString()) && matrix[r][c + 1] === 1) stack.push([r, c + 1]);
+                        if (c - 1 >= 0 && !seen.has([r, c - 1].toString()) && matrix[r][c - 1] === 1) stack.push([r, c - 1]);
                     }
                 }
             }
@@ -633,6 +633,30 @@ function sunsetViews(buildings, direction) {
 // ---------- 55. SORT STACK ---------- //
 // ---------- 56. NEXT GREATER ELEMENT ---------- //
 // ---------- 57. LONGEST PALINDROMIC SUBSTRING ---------- //
+function longestPalindromicSubstring(string) {
+    // Write your code here.
+    if (string === string.slice(0).split("").reverse().join("") || string.length === 1) return string;
+
+    let maxPal = "";
+    for (let i = 0; i < string.length; i++) {
+        const prevChar = string[i - 1];
+        const currChar = string[i];
+        const nextChar = string[i + 1];
+        const nextNextChar = string[i + 2];
+        let currPal = prevChar === currChar && currChar === nextChar && nextChar !== nextNextChar ? `${prevChar}${currChar}${nextChar}` : currChar === nextChar ? `${currChar}${nextChar}` : currChar;
+        let leftPointer = currPal.length === 3 ? i - 2 : i - 1;
+        let rightPointer = currPal.length >= 2 ? i + 2 : i + 1;
+        while (leftPointer >= 0 && rightPointer <= string.length - 1 && string[leftPointer] === string[rightPointer]) {
+            currPal = string[leftPointer] + currPal + string[rightPointer];
+            leftPointer--;
+            rightPointer++;
+        }
+        if (currPal.length > maxPal.length) maxPal = currPal;
+    }
+
+    return maxPal;
+}
+
 // ---------- 58. GROUP ANAGRAMS ---------- //
 function groupAnagrams(words) {
     // Write your code here.
