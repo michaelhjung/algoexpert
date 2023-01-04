@@ -438,6 +438,45 @@ function riverSizes(matrix) {
 }
 // ---------- 34. YOUNGEST COMMON ANCESTOR ---------- //
 // ---------- 35. REMOVE ISLANDS ---------- //
+function removeIslands(matrix) {
+    // Write your code here.
+    const seen = new Set();
+    for (let row = 0; row < matrix.length; row++) {
+        for (let col = 0; col < matrix[row].length; col++) {
+            // for all on border:
+            if (row === 0 || row === matrix.length - 1 || col === 0 || col === matrix[row].length - 1) {
+                if (matrix[row][col] === 1 && !seen.has([row, col].toString())) {
+                    const stack = [[row, col]];
+                    while (stack.length) {
+                        const node = stack.pop();
+                        const [r, c] = node;
+                        seen.add(node.toString());
+                        matrix[r][c] = 2;
+
+                        if (r + 1 <= matrix.length - 1 && !seen.has([r+1, c].toString()) && matrix[r+1][c] === 1) stack.push([r+1, c]);
+                        if (r - 1 >= 0 && !seen.has([r-1, c].toString()) && matrix[r-1][c] === 1) stack.push([r-1, c]);
+                        if (c + 1 <= matrix[r].length - 1 && !seen.has([r, c+1].toString()) && matrix[r][c+1] === 1) stack.push([r, c+1]);
+                        if (c - 1 >= 0 && !seen.has([r, c-1].toString()) && matrix[r][c-1] === 1) stack.push([r, c-1]);
+                    }
+                }
+            }
+        }
+    }
+
+    for (let row = 1; row < matrix.length - 1; row++) {
+        for (let col = 1; col < matrix[row].length - 1; col++) {
+            if (matrix[row][col] === 1) matrix[row][col] = 0;
+        }
+    }
+
+    for (let row = 0; row < matrix.length; row++) {
+        for (let col = 0; col < matrix[row].length; col++) {
+            if (matrix[row][col] === 2) matrix[row][col] = 1;
+        }
+    }
+
+    return matrix;
+}
 // ---------- 36. CYCLE IN GRAPH ---------- //
 // ---------- 37. MINIMUM PASSES OF MATRIX ---------- //
 // ---------- 38. TWO COLORABLE ---------- //
