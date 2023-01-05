@@ -497,6 +497,30 @@ function validStartingCity(distances, fuel, mpg) {
 // ---------- 41. MIN HEAP CONSTRUCTION ---------- //
 // ---------- 42. LINKED LIST CONSTRUCTION ---------- //
 // ---------- 43. REMOVE KTH NODE FROM END ---------- //
+function removeKthNodeFromEnd(head, k) {
+    // Write your code here.
+    let size = 0;
+    let curr = head;
+    while (curr) {
+        size++;
+        curr = curr.next;
+    }
+
+    let n = size - k;
+    if (n === 0) {
+        head.value = head.next.value;
+        head.next = head.next.next;
+    } else {
+        curr = head;
+        prev = null;
+        while (n > 0) {
+            prev = curr;
+            curr = curr.next;
+            n--;
+        }
+        prev.next = curr.next;
+    }
+}
 // ---------- 44. SUM OF LINKED LISTS ---------- //
 function sumOfLinkedLists(linkedListOne, linkedListTwo) {
     // Write your code here.
