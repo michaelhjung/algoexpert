@@ -686,6 +686,23 @@ function sortStack(stack) {
     return stack;
 }
 // ---------- 56. NEXT GREATER ELEMENT ---------- //
+function nextGreaterElement(array) {
+    // Write your code here.
+    const res = new Array(array.length).fill(-1);
+    const stack = [];
+    for (let i = 2 * (array.length - 1); i >= 0; i--) {
+        circularIdx = i % array.length;
+        while (stack.length) {
+            if (stack[stack.length - 1] <= array[circularIdx]) stack.pop();
+            else {
+                res[circularIdx] = stack[stack.length - 1];
+                break;
+            }
+        }
+        stack.push(array[circularIdx]);
+    }
+    return res;
+}
 // ---------- 57. LONGEST PALINDROMIC SUBSTRING ---------- //
 function longestPalindromicSubstring(string) {
     // Write your code here.
