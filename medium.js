@@ -667,6 +667,24 @@ function sunsetViews(buildings, direction) {
     return result;
 }
 // ---------- 55. SORT STACK ---------- //
+function sortStack(stack) {
+    // Write your code here.
+    if (!stack.length) return stack;
+    const top = stack.pop();
+    sortStack(stack);
+    insertInSortedOrder(stack, top);
+    function insertInSortedOrder(stack, value) {
+        if (!stack.length || stack[stack.length - 1] <= value) {
+            stack.push(value);
+            return;
+        }
+
+        const top = stack.pop();
+        insertInSortedOrder(stack, value);
+        stack.push(top);
+    }
+    return stack;
+}
 // ---------- 56. NEXT GREATER ELEMENT ---------- //
 // ---------- 57. LONGEST PALINDROMIC SUBSTRING ---------- //
 function longestPalindromicSubstring(string) {
