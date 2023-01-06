@@ -476,6 +476,21 @@ function removeIslands(matrix) {
 // ---------- 37. MINIMUM PASSES OF MATRIX ---------- //
 // ---------- 38. TWO COLORABLE ---------- //
 // ---------- 39. TASK ASSIGNMENT ---------- //
+function taskAssignment(k, tasks) {
+    // Write your code here.
+    const sortedTasks = tasks.map((val, idx) => ({val, idx})).sort((a, b) => a.val - b.val);
+    const res = [];
+
+    let l = 0, r = sortedTasks.length - 1;
+    while (l < r) {
+        res.push([sortedTasks[l].idx, sortedTasks[r].idx]);
+        l++;
+        r--;
+    }
+
+    return res;
+}
+console.log(taskAssignment(3, [1, 3, 5, 3, 1, 4]));
 // ---------- 40. VALID STARTING CITY ---------- //
 function validStartingCity(distances, fuel, mpg) {
     // Write your code here.
