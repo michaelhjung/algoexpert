@@ -662,6 +662,38 @@ function threeNumberSort(array, order) {
     return array;
 }
 // ---------- 52. MIN MAX STACK CONSTRUCTION ---------- //
+class MinMaxStack {
+    constructor() {
+        this.stack = [];
+    }
+
+    peek() {
+        // Write your code here.
+        return this.stack[this.stack.length - 1].val;
+    }
+
+    pop() {
+        // Write your code here.
+        return this.stack.pop().val;
+    }
+
+    push(number) {
+        // Write your code here.
+        const min = this.stack[this.stack.length - 1] ? Math.min(number, this.stack[this.stack.length - 1].min) : number;
+        const max = this.stack[this.stack.length - 1] ? Math.max(number, this.stack[this.stack.length - 1].max) : number;
+        this.stack.push({ val: number, min: min, max: max });
+    }
+
+    getMin() {
+        // Write your code here.
+        return this.stack[this.stack.length - 1].min;
+    }
+
+    getMax() {
+        // Write your code here.
+        return this.stack[this.stack.length - 1].max;
+    }
+}
 // ---------- 53. BALANCED BRACKETS ---------- //
 function balancedBrackets(string) {
     // Write your code here.
