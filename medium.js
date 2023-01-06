@@ -478,7 +478,7 @@ function removeIslands(matrix) {
 // ---------- 39. TASK ASSIGNMENT ---------- //
 function taskAssignment(k, tasks) {
     // Write your code here.
-    const sortedTasks = tasks.map((val, idx) => ({val, idx})).sort((a, b) => a.val - b.val);
+    const sortedTasks = tasks.map((val, idx) => ({ val, idx })).sort((a, b) => a.val - b.val);
     const res = [];
 
     let l = 0, r = sortedTasks.length - 1;
@@ -490,7 +490,6 @@ function taskAssignment(k, tasks) {
 
     return res;
 }
-console.log(taskAssignment(3, [1, 3, 5, 3, 1, 4]));
 // ---------- 40. VALID STARTING CITY ---------- //
 function validStartingCity(distances, fuel, mpg) {
     // Write your code here.
@@ -664,6 +663,23 @@ function threeNumberSort(array, order) {
 }
 // ---------- 52. MIN MAX STACK CONSTRUCTION ---------- //
 // ---------- 53. BALANCED BRACKETS ---------- //
+function balancedBrackets(string) {
+    // Write your code here.
+    const brackets = {
+        "}": "{",
+        "]": "[",
+        ")": "("
+    }
+    const stack = [];
+    for (let b of string) {
+        const top = stack[stack.length - 1];
+        if (b in brackets && brackets[b] === top) stack.pop();
+        else if (b in brackets && brackets[b] !== top) return false;
+        else if (b === "{" || b === "[" || b === "(") stack.push(b);
+    }
+    console.log(stack);
+    return stack.length === 0
+}
 // ---------- 54. SUNSET VIEWS ---------- //
 function sunsetViews(buildings, direction) {
     // Write your code here.
