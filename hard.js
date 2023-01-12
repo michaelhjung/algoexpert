@@ -37,6 +37,25 @@ function reverseLinkedList(head) {
     return prev;
 }
 // ---------- 28. Merge Linked Lists ---------- //
+function mergeLinkedLists(headOne, headTwo) {
+    // Write your code here.
+    let dummyHead = new LinkedList(null), tail = dummyHead, curr1 = headOne, curr2 = headTwo;
+    while (curr1 && curr2) {
+        if (curr1.value < curr2.value) {
+            tail.next = curr1
+            curr1 = curr1.next;
+        } else {
+            tail.next = curr2;
+            curr2 = curr2.next;
+        }
+
+        tail = tail.next;
+    }
+    if (curr1) tail.next = curr1;
+    if (curr2) tail.next = curr2;
+
+    return dummyHead.next;
+}
 // ---------- 29. Shift Linked List ---------- //
 // ---------- 30. Lowest Common Manager ---------- //
 // ---------- 31. Interweaving Strings ---------- //
