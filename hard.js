@@ -24,6 +24,15 @@
 // ---------- 24. Sort K-Sorted Array ---------- //
 // ---------- 25. Laptop Rentals ---------- //
 // ---------- 26. Find Loop ---------- //
+function findLoop(head) {
+    // Write your code here.
+    let curr = head, set = new Set();
+    while (curr) {
+        if (set.has(curr.next)) return curr.next;
+        set.add(curr);
+        curr = curr.next;
+    }
+}
 // ---------- 27. Reverse Linked List ---------- //
 function reverseLinkedList(head) {
     // Write your code here.
