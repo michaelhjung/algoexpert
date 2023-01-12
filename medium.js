@@ -510,6 +510,106 @@ function validStartingCity(distances, fuel, mpg) {
 }
 // ---------- 41. MIN HEAP CONSTRUCTION ---------- //
 // ---------- 42. LINKED LIST CONSTRUCTION ---------- //
+class DoublyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    setHead(node) {
+        // Write your code here.
+        if (this.head === null) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.insertBefore(this.head, node);
+        }
+    }
+
+    setTail(node) {
+        // Write your code here.
+        if (this.tail === null) {
+            this.setHead(node);
+        } else {
+            this.insertAfter(this.tail, node);
+        }
+    }
+
+    insertBefore(node, nodeToInsert) {
+        // Write your code here.
+        if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+        this.remove(nodeToInsert);
+        nodeToInsert.prev = node.prev;
+        nodeToInsert.next = node;
+        if (node.prev === null) this.head = nodeToInsert;
+        else node.prev.next = nodeToInsert;
+
+        node.prev = nodeToInsert;
+    }
+
+    insertAfter(node, nodeToInsert) {
+        // Write your code here.
+        if (nodeToInsert === this.head && nodeToInsert === this.tail) return;
+        this.remove(nodeToInsert);
+        nodeToInsert.prev = node;
+        nodeToInsert.next = node.next;
+        if (node.next === null) this.tail = nodeToInsert;
+        else node.next.prev = nodeToInsert;
+
+        node.next = nodeToInsert;
+    }
+
+    insertAtPosition(position, nodeToInsert) {
+        // Write your code here.
+        if (position === 1) {
+            this.setHead(nodeToInsert)
+        } else {
+            let node = this.head;
+            let currentPosition = 1;
+            while (node && currentPosition !== position) {
+                node = node.next;
+                currentPosition++;
+            }
+            if (node) this.insertBefore(node, nodeToInsert);
+            else this.setTail(nodeToInsert);
+        }
+    }
+
+    removeNodesWithValue(value) {
+        // Write your code here.
+        let curr = this.head;
+        while (curr) {
+            let nodeToRemove = curr;
+            curr = curr.next;
+            if (nodeToRemove.value === value) this.remove(nodeToRemove);
+        }
+    }
+
+    remove(node) {
+        // Write your code here.
+        if (node === this.head) this.head = this.head.next;
+        if (node === this.tail) this.tail = this.tail.prev;
+        this.removeNodeBindings(node);
+    }
+
+    removeNodeBindings(node) {
+        if (node.prev) node.prev.next = node.next;
+        if (node.next) node.next.prev = node.prev;
+        node.prev = null;
+        node.next = null;
+    }
+
+    containsNodeWithValue(value) {
+        // Write your code here.
+        let curr = this.head;
+        while (curr) {
+            if (curr.value === value) return true;
+            curr = curr.next;
+        }
+
+        return false;
+    }
+}
 // ---------- 43. REMOVE KTH NODE FROM END ---------- //
 function removeKthNodeFromEnd(head, k) {
     // Write your code here.
