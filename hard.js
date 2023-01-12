@@ -25,6 +25,17 @@
 // ---------- 25. Laptop Rentals ---------- //
 // ---------- 26. Find Loop ---------- //
 // ---------- 27. Reverse Linked List ---------- //
+function reverseLinkedList(head) {
+    // Write your code here.
+    let curr = head, prev = null;
+    while (curr) {
+        let next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
 // ---------- 28. Merge Linked Lists ---------- //
 // ---------- 29. Shift Linked List ---------- //
 // ---------- 30. Lowest Common Manager ---------- //
